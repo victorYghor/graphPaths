@@ -1,6 +1,7 @@
 package br.ufrpe
 
 typealias Graph = MutableMap<String,MutableMap<String, Int>>
+typealias Entry = MutableMap.MutableEntry<String, MutableMap<String, Int>>
 /** a -> 0, b -> 1, c -> 2, d -> 3, e -> 4
  * graph[0] -> [a -> a, a -> b, a -> c, a -> d, a -> e]
  * 0 is for represent when you cannot use this path
@@ -21,16 +22,16 @@ fun Graph.removeLetter(letter: String): Graph {
     return graphCopy
 }
 
-fun findFinalPath(start: MutableMap.MutableEntry<String, MutableMap<String, Int>>, second: MutableMap.MutableEntry<String, MutableMap<String, Int>>, third: MutableMap.MutableEntry<String, MutableMap<String, Int>>, graph: Graph, end: MutableMap.MutableEntry<String, MutableMap<String, Int>>, pastResult: String) {
+fun findFinalPath(start: String, second: String, third: String, end: String, pastResult: String, originalGraph: Graph) {
     print(
         listOf(
-        pastResult + "${start.key + second.key} =" +
-            " ${graph[start.key]!![second.key]} -> ${second.key + third.key} =" +
-                " ${graph[second.key]!![third.key]} -> ${third.key + end.key} = ${graph[second.key]!![end.key]}",
+        pastResult + "${start + second} =" +
+            " ${originalGraph[start]!![second]} -> ${second + third} =" +
+                " ${originalGraph[second]!![third]} -> ${third + end} = ${originalGraph[second]!![end]}",
 
-        pastResult + "${start.key + third.key} =" +
-                " ${graph[start.key]!![third.key]} -> ${third.key + second.key} =" +
-                " ${graph[third.key]!![second.key]} -> ${second.key + end.key} = ${graph[second.key]!![end.key]}"
+        pastResult + "${start + third} =" +
+                " ${originalGraph[start]!![third]} -> ${third + second} =" +
+                " ${originalGraph[third]!![second]} -> ${second + end} = ${originalGraph[second]!![end]}"
         ).joinToString("\n")
     )
 }
@@ -38,34 +39,52 @@ fun findFinalPath(start: MutableMap.MutableEntry<String, MutableMap<String, Int>
 fun generatePaths(
     graph: Graph,
     pastResult: String,
-    start: MutableMap.MutableEntry<String, MutableMap<String, Int>>,
-    end: MutableMap.MutableEntry<String, MutableMap<String, Int>>
+    startKey: String,
+    firstStartKey: String,
+    originalGraph: Graph
 ) {
-    for(e in graph.entries) {
-        generatePaths(
-            graph = graph.removeLetter(e.key),
-            pastResult = pastResult + formatPath(graph[e.key]!![start.key].toString(), start.key + e.key),
-            start = e,
-            end = end
-        )
-    }
-    if(graph.size == 3) {
-        // sera que first é igual a second ? não eu removo ele do map
+    if(graph.size == 2) {
         findFinalPath(
-            graph = graph,
-            start = start,
-            second = graph.entries.first(),
-            third = graph.entries.last(),
-            end = end,
-            pastResult = pastResult
+            start = startKey,
+            second = graph.entries.first().key,
+            third = graph.entries.last().key,
+            end = firstStartKey,
+            pastResult = pastResult,
+            originalGraph = originalGraph
         )
+    }else {
+        // a ordem de remove letter não esta sendo feita no local correto
+        // eu preciso do b aqui para que as outras coisas tenha informção do b tipo o quando o e for c o
+        // entry do c precisa ter a informação da distancia para o b
+        // ao final do programa quando ele chamar a função novamente o b não sera mais necessário e vai precisar ser removido ao final da chamada da função
+        // past result precisa do key
+        for(k in graph.keys) {
+            generatePaths(
+                graph = graph.removeLetter(k),
+                pastResult = pastResult + formatPath(originalGraph[k]!![startKey].toString(), startKey + k),
+                startKey = k,
+                firstStartKey = firstStartKey,
+                originalGraph = originalGraph
+            )
+        }
     }
 }
 
 val graph = graphPentagon
 
 fun main() {
-
+    for(k in graphPentagon.keys) {
+        val graphFirst = graphPentagon.removeLetter(k)
+        for(j in graphFirst.keys) {
+            generatePaths(
+                graph = graphFirst.removeLetter(j),
+                pastResult = "$k$j = ${graphPentagon[k]!![j]} ->",
+                startKey = j,
+                firstStartKey = k,
+                originalGraph = graphPentagon
+                )
+        }
+    }
     // testando a funcionalidade de remover letras
 //    println("remove 0" + graphPentagon.removeLetter(0))
 //    println("remove 1" + graphPentagon.removeLetter(1))

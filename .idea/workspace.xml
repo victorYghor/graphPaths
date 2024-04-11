@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22d3e178-4e02-48d6-a3a4-5b505a4ccbd2" name="Changes" comment="Removendo partes descessárias">
+    <list default="true" id="22d3e178-4e02-48d6-a3a4-5b505a4ccbd2" name="Changes" comment="using map and recursion for solve the problem">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/CopyTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/CopyTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Pentagon.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Pentagon.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,20 +46,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Kotlin.CopyTestKt.executor": "Run",
-    "Kotlin.MainKt.executor": "Debug",
-    "Kotlin.PentagonKt.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "/home/vitor-yghor/IdeaProjects/solution/src/main/kotlin/Main.kt",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Kotlin.CopyTestKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.MainKt.executor&quot;: &quot;Debug&quot;,
+    &quot;Kotlin.PentagonKt.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/home/vitor-yghor/IdeaProjects/solution/src/main/kotlin/Main.kt&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Kotlin.PentagonKt">
     <configuration name="CopyTestKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="br.ufrpe.CopyTestKt" />
@@ -141,7 +139,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712845006528</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="using map and recursion for solve the problem">
+      <option name="closed" value="true" />
+      <created>1712865371657</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712865371657</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -150,6 +156,23 @@
     <MESSAGE value="generate the first sequence" />
     <MESSAGE value="Generating the first correct sequence" />
     <MESSAGE value="Removendo partes descessárias" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removendo partes descessárias" />
+    <MESSAGE value="using map and recursion for solve the problem" />
+    <option name="LAST_COMMIT_MESSAGE" value="using map and recursion for solve the problem" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/Pentagon.kt</url>
+          <line>61</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.lang.String" memberName="value" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
