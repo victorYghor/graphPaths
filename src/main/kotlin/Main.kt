@@ -1,5 +1,5 @@
 package br.ufrpe
 
 fun main() {
-    print('a' + 1)
+    println(generatePaths(graph))
 }

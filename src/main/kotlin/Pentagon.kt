@@ -1,7 +1,5 @@
 package br.ufrpe
 
-import kotlin.contracts.contract
-
 /** a -> 0, b -> 1, c -> 2, d -> 3, e -> 4
  * graph[0] -> [a -> a, a -> b, a -> c, a -> d, a -> e]
  * 0 is for represent when you cannot use this path
@@ -41,36 +39,44 @@ fun Int.toVertex(): String {
 //}
 
 fun generatePaths(graph: Array<Array<Int>>): String {
-    var currentLetter: Char = 'a'
     var paths = mutableListOf<String>()
     for (i in graph.indices) {
-        val tempCopy = graph.copyOf()
+        var tempCopy1 = graph.copyOf()
         var path = ""
         path += i.toVertex()
 //        var pathCost = 0
         // fazer com que ele não volte para a letra que ele começou
-        tempCopy.forEach { it[i] = 0 }
+        tempCopy1.forEach { it[i] = 0 }
 
-        for (j in graph[i].indices) {
-            val distance = graph[i][j]
+        for (j in tempCopy1[i].indices) {
+            val distance = tempCopy1[i][j]
             if (distance == 0) continue
             path += distance.toString() + j.toVertex()
-            tempCopy.forEach { it[j] = 0 }
+            tempCopy1.forEach { it[j] = 0 }
 
-            for (k in graph[j].indices) {
-                val distance = graph[j][k]
+            for (k in tempCopy1[j].indices) {
+                val distance = tempCopy1[j][k]
                 if (distance == 0) continue
                 path += distance.toString() + k.toVertex()
-                tempCopy.forEach { it[k] = 0}
+                tempCopy1.forEach { it[k] = 0}
 
-                for (l in graph[k].indices) {
-                    val distance = graph[k][l]
+                for (l in tempCopy1[k].indices) {
+                    val distance = tempCopy1[k][l]
                     if (distance == 0) continue
                     path += distance.toString() + l.toVertex()
-                    tempCopy.forEach { it[l] = 0 }
+                    tempCopy1.forEach { it[l] = 0 }
 
-                    for(m in graph[l].indices) {
+                    for(m in tempCopy1[l].indices) {
+                        val distance = tempCopy1[l][m]
+                        if(distance == 0) continue
+                        path += distance.toString() + m.toVertex()
+                        tempCopy1.forEach { it[m] = 0 }
 
+                        // come back for when start
+                        val finalDistance = graph[m][i]
+                        path += finalDistance.toString() + m.toVertex()
+                        paths.add(path)
+                        tempCopy1 = graph.copyOf()
                     }
                 }
             }
@@ -78,5 +84,5 @@ fun generatePaths(graph: Array<Array<Int>>): String {
 //            pathCost += distance
 
     }
-}
+    return paths.joinToString("")
 }
