@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22d3e178-4e02-48d6-a3a4-5b505a4ccbd2" name="Changes" comment="generate the first sequence">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/CopyTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Pentagon.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Pentagon.kt" afterDir="false" />
-    </list>
+    <list default="true" id="22d3e178-4e02-48d6-a3a4-5b505a4ccbd2" name="Changes" comment="Generating the first correct sequence" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,19 +43,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Kotlin.CopyTestKt.executor&quot;: &quot;Debug&quot;,
-    &quot;Kotlin.MainKt.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/home/vitor-yghor/IdeaProjects/solution/src/main/kotlin/Main.kt&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Kotlin.CopyTestKt.executor": "Run",
+    "Kotlin.MainKt.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "onboarding.tips.debug.path": "/home/vitor-yghor/IdeaProjects/solution/src/main/kotlin/Main.kt",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Kotlin.MainKt">
     <configuration name="CopyTestKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="br.ufrpe.CopyTestKt" />
@@ -115,14 +111,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712832181119</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Generating the first correct sequence">
+      <option name="closed" value="true" />
+      <created>1712844639067</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1712844639067</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="trying to make a solution" />
     <MESSAGE value="evolution of the algorithm" />
     <MESSAGE value="generate the first sequence" />
-    <option name="LAST_COMMIT_MESSAGE" value="generate the first sequence" />
+    <MESSAGE value="Generating the first correct sequence" />
+    <option name="LAST_COMMIT_MESSAGE" value="Generating the first correct sequence" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

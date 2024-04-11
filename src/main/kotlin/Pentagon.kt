@@ -12,13 +12,6 @@ val graph = arrayOf(
     arrayOf<Int>(7, 2, 5, 1, 0)
 )
 
-
-//val graphFour = mapOf(
-//    'a' to mapOf('b' to 3, 'c' to 8, 'd' to 4),
-//    'b' to mapOf('a' to 3, 'c' to 10, 'd' to 9),
-//    'c' to mapOf('a' to 8, 'b' to )
-//)
-
 fun Int.toVertex(): String {
     return when (this) {
         0 -> "a"
@@ -29,14 +22,6 @@ fun Int.toVertex(): String {
         else -> " "
     }
 }
-
-//fun choosePath(graph: Array<Array<Int>>, path: String, actualVertex: Int): String {
-//    var newPath = path
-//    for(i in graph[actualVertex].indices) {
-//        newPath += graph[actualVertex][i].toString()
-//
-//    }
-//}
 
 fun putZero(arr: Array<Array<Int>>, pos: Int) {
     for(i in arr.indices) {
@@ -63,7 +48,7 @@ fun generatePaths(graph: Array<Array<Int>>): String {
         var path = ""
         path += i.toVertex()
 //        var pathCost = 0
-        // fazer com que ele não volte para a letra que ele começou
+        // isso faz com que ele não repita caminho
         putZero(tempCopy1, i)
 
         for (j in tempCopy1[i].indices) {
@@ -101,7 +86,6 @@ fun generatePaths(graph: Array<Array<Int>>): String {
                 }
             }
         }
-//            pathCost += distance
     }
     return paths.joinToString("\n")
 }
