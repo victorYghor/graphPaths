@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22d3e178-4e02-48d6-a3a4-5b505a4ccbd2" name="Changes" comment="final form code">
+    <list default="true" id="22d3e178-4e02-48d6-a3a4-5b505a4ccbd2" name="Changes" comment="make the code work fixing the reference copy">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Pentagon.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Pentagon.kt" afterDir="false" />
     </list>
@@ -155,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712878303931</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="make the code work fixing the reference copy">
+      <option name="closed" value="true" />
+      <created>1712880463627</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1712880463627</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -166,15 +174,21 @@
     <MESSAGE value="Removendo partes descessárias" />
     <MESSAGE value="using map and recursion for solve the problem" />
     <MESSAGE value="final form code" />
-    <option name="LAST_COMMIT_MESSAGE" value="final form code" />
+    <MESSAGE value="make the code work fixing the reference copy" />
+    <option name="LAST_COMMIT_MESSAGE" value="make the code work fixing the reference copy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/Pentagon.kt</url>
-          <line>75</line>
-          <option name="timeStamp" value="7" />
+          <line>86</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/Pentagon.kt</url>
+          <line>97</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

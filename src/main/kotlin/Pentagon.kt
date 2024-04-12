@@ -22,17 +22,29 @@ fun Graph.removeLetter(letter: String): Graph {
     return graphCopy
 }
 
-fun findFinalPath(start: String, second: String, third: String, end: String, pastResult: String, originalGraph: Graph) {
-    print(
-        listOf(
-        pastResult + "${start + second} =" +
-            " ${originalGraph[start]!![second]} -> ${second + third} =" +
-                " ${originalGraph[second]!![third]} -> ${third + end} = ${originalGraph[third]!![end]}",
+fun findFinalPath(start: String, second: String, third: String, end: String, pastResult: String, originalGraph: Graph, cost: Int): Map<String, Int>{
+    val startToSecond = originalGraph[start]!![second]!!
+    val startToThird = originalGraph[start]!![third]!!
+    val secondToThird = originalGraph[second]!![third]!!
+    val thirdToSecond = originalGraph[second]!![third]!!
+    val secondToEnd = originalGraph[second]!![end]!!
+    val thirdToEnd = originalGraph[third]!![end]!!
 
-        pastResult + "${start + third} =" +
-                " ${originalGraph[start]!![third]} -> ${third + second} =" +
-                " ${originalGraph[third]!![second]} -> ${second + end} = ${originalGraph[second]!![end]}"
-        ).joinToString("\n", postfix = "\n")
+    val sum1 = cost + startToSecond + secondToThird + thirdToEnd
+    val sum2 = cost + startToThird + thirdToSecond + secondToEnd
+    val path1 = pastResult + "${start + second} =" +
+            " ${startToSecond} -> ${second + third} =" +
+            " ${secondToThird} -> ${third + end} = ${thirdToEnd}" +
+            " cost = $sum1"
+    println(path1)
+    val path2 = pastResult + "${start + third} =" +
+            " ${startToThird} -> ${third + second} =" +
+            " ${thirdToSecond} -> ${second + end} = ${secondToEnd}" +
+            " cost = $sum2"
+    println(path2)
+    return mapOf(
+        path1 to sum1,
+        path2 to sum2
     )
 }
 
@@ -41,16 +53,18 @@ fun generatePaths(
     pastResult: String,
     startKey: String,
     firstStartKey: String,
-    originalGraph: Graph
-) {
+    originalGraph: Graph,
+    cost: Int
+): Map<String, Int> {
     if(graph.size == 2) {
-        findFinalPath(
+        return findFinalPath(
             start = startKey,
             second = graph.entries.first().key,
             third = graph.entries.last().key,
             end = firstStartKey,
             pastResult = pastResult,
-            originalGraph = originalGraph.copyOf()
+            originalGraph = originalGraph.copyOf(),
+            cost = cost
         )
     }else {
         // a ordem de remove letter não esta sendo feita no local correto
@@ -59,38 +73,51 @@ fun generatePaths(
         // ao final do programa quando ele chamar a função novamente o b não sera mais necessário e vai precisar ser removido ao final da chamada da função
         // past result precisa do key
         for(k in graph.keys) {
-            generatePaths(
+            val distance = originalGraph[k]!![startKey]!!
+            return generatePaths(
                 graph = graph.removeLetter(k),
-                pastResult = pastResult + formatPath(originalGraph[k]!![startKey].toString(), startKey + k),
+                pastResult = pastResult + formatPath(distance.toString(), startKey + k),
                 startKey = k,
                 firstStartKey = firstStartKey,
-                originalGraph = originalGraph.copyOf()
+                originalGraph = originalGraph.copyOf(),
+                cost = distance + cost
             )
         }
     }
+    return mapOf("" to Int.MAX_VALUE)
 }
 
 val graph = graphPentagon
 
 fun main() {
+    val pathsInfo = mutableMapOf<String, Int>()
     for(k in graphPentagon.keys) {
         val graphFirst = graphPentagon.removeLetter(k)
         for(j in graphFirst.keys) {
-            generatePaths(
+            val distance = graphPentagon[k]!![j]!!
+            val result = generatePaths(
                 graph = graphFirst.removeLetter(j),
-                pastResult = "$k$j = ${graphPentagon[k]!![j]} ->",
+                pastResult = "$k$j = ${distance} ->",
                 startKey = j,
                 firstStartKey = k,
-                originalGraph = graphPentagon.copyOf()
+                originalGraph = graphPentagon.copyOf(),
+                cost = distance
+            )
+            // retirar os valores nulos da chamada da função
+            if(result.entries.first().key != "") {
+                pathsInfo.putAll(
+                    result
                 )
+            }
         }
     }
-    // testando a funcionalidade de remover letras
-//    println("remove 0" + graphPentagon.removeLetter(0))
-//    println("remove 1" + graphPentagon.removeLetter(1))
-//    println("remove 2" + graphPentagon.removeLetter(2))
-//    println("remove 3" + graphPentagon.removeLetter(3))
-//    println("remove 4" + graphPentagon.removeLetter(4))
+    var min: MutableMap.MutableEntry<String, Int> = pathsInfo.entries.first()
+    for(entry in pathsInfo.entries) {
+        if(entry.value < min.value) {
+            min = entry
+        }
+    }
+    println("the min cost is: ${min.value} the path is ${min.key}")
 }
 
 fun MutableMap<String, Int>.copyOf(jvm: Boolean = false): MutableMap<String, Int> {
