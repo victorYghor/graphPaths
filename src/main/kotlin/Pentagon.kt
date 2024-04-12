@@ -27,12 +27,12 @@ fun findFinalPath(start: String, second: String, third: String, end: String, pas
         listOf(
         pastResult + "${start + second} =" +
             " ${originalGraph[start]!![second]} -> ${second + third} =" +
-                " ${originalGraph[second]!![third]} -> ${third + end} = ${originalGraph[second]!![end]}",
+                " ${originalGraph[second]!![third]} -> ${third + end} = ${originalGraph[third]!![end]}",
 
         pastResult + "${start + third} =" +
                 " ${originalGraph[start]!![third]} -> ${third + second} =" +
                 " ${originalGraph[third]!![second]} -> ${second + end} = ${originalGraph[second]!![end]}"
-        ).joinToString("\n")
+        ).joinToString("\n", postfix = "\n")
     )
 }
 
@@ -50,7 +50,7 @@ fun generatePaths(
             third = graph.entries.last().key,
             end = firstStartKey,
             pastResult = pastResult,
-            originalGraph = originalGraph
+            originalGraph = originalGraph.copyOf()
         )
     }else {
         // a ordem de remove letter não esta sendo feita no local correto
@@ -64,7 +64,7 @@ fun generatePaths(
                 pastResult = pastResult + formatPath(originalGraph[k]!![startKey].toString(), startKey + k),
                 startKey = k,
                 firstStartKey = firstStartKey,
-                originalGraph = originalGraph
+                originalGraph = originalGraph.copyOf()
             )
         }
     }
@@ -81,7 +81,7 @@ fun main() {
                 pastResult = "$k$j = ${graphPentagon[k]!![j]} ->",
                 startKey = j,
                 firstStartKey = k,
-                originalGraph = graphPentagon
+                originalGraph = graphPentagon.copyOf()
                 )
         }
     }
@@ -93,13 +93,20 @@ fun main() {
 //    println("remove 4" + graphPentagon.removeLetter(4))
 }
 
+fun MutableMap<String, Int>.copyOf(jvm: Boolean = false): MutableMap<String, Int> {
+    val copy = mutableMapOf<String, Int>()
+    for(k in this.keys) {
+        copy[k] = this[k]!!
+    }
+    return copy
+}
 
 fun Graph.copyOf(): Graph {
-    val copied = mutableMapOf<String, MutableMap<String, Int>>()
+    val copy = mutableMapOf<String, MutableMap<String, Int>>()
     for(k in this.keys) {
-        copied[k] = this[k]!!
+        copy[k] = this[k]!!.copyOf()
     }
-    return copied
+    return copy
 }
 fun formatPath(distance: String, path: String) = "$path = $distance ->"
 
